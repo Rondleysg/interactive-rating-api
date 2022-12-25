@@ -13,7 +13,7 @@ export class RatingController {
 
     //Ranking da maior avaliação para a menor
     static getRanking = (req: Request, res: Response): void => {
-        const listRanking = Rating.find()
+        Rating.find()
             .then((list: HydratedDocument<IRating>[]) => {
                 list.sort((r1, r2) => {
                     if (r1.value < r2.value) {

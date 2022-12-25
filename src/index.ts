@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./config/dbConnect";
 import routes from "./routers";
+import { Express } from "express-serve-static-core";
 
 db.on("error", console.log.bind(console, "Connection error"));
 db.once("open", () => {
@@ -10,7 +11,7 @@ db.once("open", () => {
 const PORT: string = process.env.PORT || "4000";
 const HOSTNAME: string = "http://localhost";
 
-const app = express();
+const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
