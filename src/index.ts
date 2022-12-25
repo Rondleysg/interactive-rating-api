@@ -1,25 +1,20 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import db from "./config/dbConnect";
+import routes from "./routers";
 
-const PORT = process.env.PORT || 4000;
+db.on("error", console.log.bind(console, "Connection error"));
+db.once("open", () => {
+    console.log("successful connection to database");
+});
 
-const HOSTNAME = process.env.HOSTNAME || "http://localhost";
+const PORT: string = process.env.PORT || "4000";
+const HOSTNAME: string = "http://localhost";
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.send("teste");
-});
-
-app.use(
-    cors({
-        origin: ["http://localhost:3000"],
-    })
-);
-
-app.use((req, res) => {
-    res.status(404);
-});
+routes(app);
 
 app.listen(PORT, () => {
     console.log(`Server running successfully ${HOSTNAME}:${PORT}`);

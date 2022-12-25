@@ -2,11 +2,11 @@
     "compilerOptions": {
         "target": "ES6",
         "module": "commonjs",
-        "outDir": "./dist",
-        "strict": true,
+        "outDir": "build",
         "noEmitOnError": true,
-        "noImplicitAny": false,
-        "removeComments": true,
-        "strictNullChecks": true
-    }
+        "noImplicitAny": true,
+        "strict": true,
+        "esModuleInterop": true
+    },
+    "include": ["src/**/*"]
 }
