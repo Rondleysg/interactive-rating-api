@@ -4,6 +4,7 @@
         "module": "commonjs",
         "outDir": "build",
         "noEmitOnError": true,
+        "removeComments": true,
         "noImplicitAny": true,
         "strict": true,
         "esModuleInterop": true
