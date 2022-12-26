@@ -16,4 +16,7 @@ ratingsRouter.post("/rating", RatingController.createNewRating);
 //Atualizar uma avaliação existente
 ratingsRouter.put("/ratings/:id", RatingController.updateRating);
 
+//Deletar uma avaliação
+ratingsRouter.delete("/ratings/:id", RatingController.deleteRating);
+
 export default ratingsRouter;

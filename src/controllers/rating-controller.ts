@@ -43,6 +43,7 @@ export class RatingController {
         const newRating: HydratedDocument<IRating> = new Rating({
             name: req.body.name,
             value: req.body.value,
+            date: new Date(),
         });
 
         newRating.save((err: CallbackError) => {
@@ -71,5 +72,17 @@ export class RatingController {
                 }
             }
         );
+    };
+
+    static deleteRating = (req: Request, res: Response): void => {
+        const { id } = req.params;
+
+        Rating.findByIdAndDelete(id, (err: CallbackError) => {
+            if (!err) {
+                res.status(200).send(`rating deleted successfully`);
+            } else {
+                res.status(500).send({ message: err.message });
+            }
+        });
     };
 }
