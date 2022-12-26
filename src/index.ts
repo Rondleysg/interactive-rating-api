@@ -14,9 +14,6 @@ const HOSTNAME: string = "http://localhost";
 const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-});
 
 routes(app);
 
