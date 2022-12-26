@@ -6,7 +6,6 @@ import { Rating } from "../models/Rating";
 export class RatingController {
     //Lista de todas avaliações
     static getAllRatings = (req: Request, res: Response): void => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
         Rating.find((err: CallbackError, rating: HydratedDocument<IRating>) => {
             res.json(rating);
         });
@@ -14,7 +13,6 @@ export class RatingController {
 
     //Ranking da maior avaliação para a menor
     static getRanking = (req: Request, res: Response): void => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
         Rating.find()
             .then((list: HydratedDocument<IRating>[]) => {
                 list.sort((r1, r2) => {
@@ -37,7 +35,6 @@ export class RatingController {
 
     //Criar uma avaliação
     static createNewRating = (req: Request, res: Response): void => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
         if (typeof req.body.value !== "number") {
             res.status(500).send({
                 message: `the value field only accepts numbers - failed to register rating`,
@@ -61,7 +58,6 @@ export class RatingController {
 
     //Atualizar uma avaliação existente
     static updateRating = (req: Request, res: Response): void => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
         const { id } = req.params;
 
         Rating.findByIdAndUpdate(

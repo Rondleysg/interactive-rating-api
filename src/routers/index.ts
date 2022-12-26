@@ -1,10 +1,9 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import ratingsRouter from "./ratings-router";
 import { Express } from "express-serve-static-core";
 
 const routes = (app: Express) => {
-    app.route("/").get((req: Request, res: Response) => {
-        res.setHeader("Access-Control-Allow-Origin", "*");
+    app.route("/").get((req: express.Request, res: express.Response) => {
         res.sendStatus(404);
     });
 
