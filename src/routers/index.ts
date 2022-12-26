@@ -4,6 +4,7 @@ import { Express } from "express-serve-static-core";
 
 const routes = (app: Express) => {
     app.route("/").get((req: Request, res: Response) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
         res.sendStatus(404);
     });
 

@@ -35,7 +35,15 @@ export class RatingController {
 
     //Criar uma avaliação
     static createNewRating = (req: Request, res: Response): void => {
-        const newRating: HydratedDocument<IRating> = new Rating(req.body);
+        if (typeof req.body.value !== "number") {
+            res.status(500).send({
+                message: `the value field only accepts numbers - failed to register rating`,
+            });
+        }
+        const newRating: HydratedDocument<IRating> = new Rating({
+            name: req.body.name,
+            value: req.body.value,
+        });
 
         newRating.save((err: CallbackError) => {
             if (err) {
